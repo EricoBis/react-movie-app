@@ -41,7 +41,7 @@ function SearchResult() {
         movies.map((movie, index) => {
           return <MovieCard key={index} movie={movie}></MovieCard>;
         })}
-      {!movies && <h2>Nenhum resultado foi obtido!</h2>}
+      {!movies && <h2>Your search found no results!</h2>}
     </Flex>
   );
 }
