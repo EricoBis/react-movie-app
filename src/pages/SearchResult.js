@@ -22,7 +22,6 @@ function SearchResult() {
   const getData = async () => {
     try {
       const res = await axios.get(`${searchURL}${searchFor}${key}`);
-      console.log(`${searchURL}${searchFor}${key}`);
       setMovies(res.data.Search);
     } catch (error) {
       console.error(error);
