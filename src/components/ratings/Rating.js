@@ -6,35 +6,36 @@ import { SiRottentomatoes } from "react-icons/si";
 import { FaImdb } from "react-icons/fa";
 import { RatingContainer } from "./style";
 
-const RATER = {
-  imdb: "Internet Movie Database",
-  rotten: "Rotten Tomatoes",
-};
+const RATER = [
+  {
+    name: "Internet Movie Database",
+    icon: <FaImdb />,
+  },
+  {
+    name: "Rotten Tomatoes",
+    icon: <SiRottentomatoes />,
+  },
+];
 
 function Rating({ value }) {
-  const formatSource = (source) => {
-    if (source === RATER.imdb) return "IMDb";
-    else if (source === RATER.rotten) return "Rotten T.";
-    else return source;
-  };
-
+  
   const getIcon = (source) => {
-    if (source === RATER.imdb) return <FaImdb />;
-    else if (source === RATER.rotten) return <SiRottentomatoes />;
+    const result = RATER.find(r => r.name === source);
+    if(result) return result.icon;
   };
 
   return (
     <Flex dir="row">
       {value &&
-        value.map((rating) => {
+        value.map((rating, index) => {
           const { Source, Value } = rating;
           return (
-            <RatingContainer>
-              <Flex dir="row" align="center">
+            <RatingContainer key={index}>
+              <Flex dir="row" justify="center" align="center">
                 {getIcon(Source)}
                 <h3>{Value}</h3>
               </Flex>
-              <p>{formatSource(Source)}</p>
+              <p>{Source}</p>
             </RatingContainer>
           );
         })}
@@ -43,4 +44,3 @@ function Rating({ value }) {
 }
 
 export default Rating;
-
